@@ -1,0 +1,39 @@
+General:
+    seed: 7
+    work_dir: WORK_DIR
+    fold_num: 4
+
+Data:
+    split_dir: SPLIT_DIR
+    data_dir_1: DATA_DIR_1  # for data with no overlap
+    data_dir_2: DATA_DIR_2  # for data with overlap
+    features_size: 768
+    n_classes: 2
+
+Model:
+    network: 'ISMIL'
+
+Train:
+    mode: repeat
+    lr: 3.0e-4
+    reg: 1.0e-5
+    CosineAnnealingLR:
+        T_max: 30
+        eta_min: 1.0e-7
+    Early_stopping:
+        patient: 10
+        stop_epoch: 30
+        type: max
+    max_epochs: 100
+    train_method: ISMIL
+    val_method: ISMIL
+    dataset: TwoStreamBagDataset
+
+
+Test:
+    TEST_SET_NAME:
+        data_dir_1: TEST_DATA_DIR_1 # for data with no overlap
+        data_dir_2: TEST_DATA_DIR_2 # for data with overlap
+        csv_path: TEST_SET_CSV_PATH
+
+
